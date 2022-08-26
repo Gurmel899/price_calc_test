@@ -20,25 +20,27 @@ class PriceController extends Controller
         $this->locationData = collect(LocationData::LOCATION_DATA);
     }
 
-    public function price()
+    public function price(Request $request)
     {
 
         $gData = $this->goodsData;
-        $data1 = $gData->where("id", "0f4ab946-a581-4400-a501-29df053a431b")->all();
-        $dataAll = $data1[1];
+        $idGoods = $request->id_goods;
+        // $idGoods = $request->$name;
+        $data1 = $gData->where("id",$idGoods)->first();
+        $dataAll = $data1;
         $locationId = $dataAll["ship_location_id"];
         $weight = $dataAll["weight"];
         $nameGoods = $dataAll["name"];
         $unit = $dataAll["unit"];
 
         $lData = $this->locationData;
-        $data2 = $lData->where("id", $locationId)->all();
-        $locType = $data2[2]["fee_location_type"];
-        $locName= $data2[2]["location_name"];
+        $data2 = $lData->where("id", $locationId)->first();
+        $locType = $data2["fee_location_type"];
+        $locName= $data2["location_name"];
 
         $pData = $this->priceLocation;
-        $data3 = $pData->where("location_type", $locType)->all();
-        $price = $data3[0]["price"];
+        $data3 = $pData->where("location_type", $locType)->first();
+        $price = $data3["price"];
         $pricegoods = $price * $weight;
 
         $result =[
