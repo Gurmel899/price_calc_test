@@ -24,7 +24,7 @@ class GoodsData
             "unit" => "KG",
             "weight" => 3,
             "origin_location" => "fa9b75da-052f-41ca-a5b3-1ca082084c10",
-            "ship_location_id" => "5d92c525-9676-4a46-97b0-ab624ea00ccb",
+            "ship_location_id" =>"5d92c525-9676-4a46-97b0-ab624ea00ccb",
         ]
     ];
 }
